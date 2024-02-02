@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Next Web</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/jsx">
+
+        const app = document.getElementById("app")
+
+        function Header({title}){
+            return (<h1>{title?title:"Default title"}</h1>)
+        }
+        function ItemList(){
+            const itens = ["item1", "item2", "item3"]
+            return (
+                <ul>
+                    {
+                        itens.map((item)=>(
+                            <li key={item}>{item}</li>
+                        ))
+                    }
+                </ul>
+            )
+        }
+        function LikeButton(){
+            const [likes, setLikes] = React.useState(0)
+            function handleClick(){
+                setLikes(likes + 1)
+            }
+            return (<button onClick={handleClick}>Likes ({likes})</button>)
+        }
+        function HomePage(){
+            return (
+                <div>
+                    <Header title="Props Title"></Header>
+                    <Header></Header>
+                    <ItemList></ItemList>
+                    <LikeButton></LikeButton>
+                </div>
+            )
+        }
+
+        const root = ReactDOM.createRoot(app)
+        root.render(<HomePage/>)
+    </script>
+</body>
+</html>
