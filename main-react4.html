@@ -2,9 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>React web</title>
+
 </head>
 <body>
+<div id="app"></div>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/jsx">
+    const app = document.getElementById('app')
+
+    function Header({title}){
+        return (<h1>{title ? title : "Default Title"}</h1>)
+    }
+
+    function HomePage(){
+
+        const arrayList = ['jhonatan', 'cassiano', 'agnes']
+        // [anything, setAnything] = React.useState(initialize anything)
+        const [likes, setLikes] = React.useState(0)
+
+        function handleClick(){
+            setLikes(likes+1)
+        }
+
+        return (
+            <div>
+                <Header title="List item"></Header>
+                <ul>
+                    {
+                        arrayList.map((item) => (
+                            <li key={item}> {item} </li>
+                        ))
+                    }
+                </ul>
+                <button onClick={handleClick}>Like({likes})</button>
+            </div>
+        )
+    }
+
+
+
+    const root = ReactDOM.createRoot(app)
+    root.render(<HomePage/>)
+
+</script>
 
 </body>
 </html>
